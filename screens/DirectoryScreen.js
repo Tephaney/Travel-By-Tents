@@ -13,7 +13,7 @@ const DirectoryScreen =(props)=>{
             </ListItem>
         )
     }
-
+    console.log();
     return (
         <FlatList
             data={props.campsites}
