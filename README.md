@@ -47,11 +47,6 @@ Campsite mobile app built with React Native using Expo Cli
 <br />
 <br />
 
-<img width="364" alt="Screen Shot 2022-08-31 at 8 32 49 PM" src="https://user-images.githubusercontent.com/101478420/187828843-9f0bb840-db98-433f-994a-07008a4cfb07.png">
-
-<br />
-<br />
-
 <img width="369" alt="Screen Shot 2022-08-31 at 8 33 14 PM" src="https://user-images.githubusercontent.com/101478420/187828859-9067fb3f-60a4-4b21-aac7-235ea9e60561.png">
 
 <br />
