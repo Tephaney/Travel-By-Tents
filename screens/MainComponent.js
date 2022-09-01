@@ -218,7 +218,7 @@ const CustomDrawerContent = (props) => (
         <Image source={logo} style={styles.drawerImage} />
       </View>
       <View style={{ flex: 2 }}>
-        <Text style={styles.drawerHeaderText}>NuCamp</Text>
+        <Text style={styles.drawerHeaderText}>Travel By Tents</Text>
       </View>
     </View>
     <DrawerItemList {...props} labelStyle={{ fontWeight: "bold" }} />
@@ -228,6 +228,16 @@ const CustomDrawerContent = (props) => (
 const Main = () => {
   const dispatch = useDispatch();
 
+  const showNetInfo = async () => {
+    const connectionInfo = await NetInfo.fetch();
+    Platform.OS === "ios"
+      ? Alert.alert("Initial Network Connectivity Type:", connectionInfo.type)
+      : ToastAndroid.show(
+          "Initial Network Connectivity Type: " + connectionInfo.type,
+          ToastAndroid.LONG
+        );
+  };
+
   useEffect(() => {
     dispatch(fetchCampsites());
     dispatch(fetchPromotions());
@@ -236,21 +246,15 @@ const Main = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    NetInfo.fetch().then((connectionInfo) => {
-      Platform.OS === "ios"
-        ? Alert.alert("Initial Network Connectivity Type:", connectionInfo.type)
-        : ToastAndroid.show(
-            "Initial Network Connectivity Type: " + connectionInfo.type,
-            ToastAndroid.LONG
-          );
-    });
+    showNetInfo();
 
     const unsubscribeNetInfo = NetInfo.addEventListener((connectionInfo) => {
       handleConnectivityChange(connectionInfo);
     });
 
     return unsubscribeNetInfo;
-  }, []);
+  }),
+    [];
 
   const handleConnectivityChange = (connectionInfo) => {
     let connectionMsg = "You are now connected to an active network.";
